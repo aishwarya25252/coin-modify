@@ -78,6 +78,7 @@ def runGirvanNewman(G, Orig_deg, m_):
     #let's find the best split of the graph
     BestQ = 0.0
     Q = 0.0
+    Bestcomps = list(nx.connected_components(G))
     while True:    
         CmtyGirvanNewmanStep(G)
         Q = _GirvanNewmanGetModularity(G, Orig_deg, m_);
@@ -88,9 +89,9 @@ def runGirvanNewman(G, Orig_deg, m_):
             #print("Identified components: {}".format(Bestcomps))
         if G.number_of_edges() == 0:
             break
-    if BestQ > 0.0:
-        #print("Max modularity found (Q): {} and number of communities: {}".format(BestQ, len(Bestcomps)))
-        #print("Graph communities: {}".format(Bestcomps))
+    if True :#BestQ > 0.0:
+        print("Max modularity found (Q): {} and number of communities: {}".format(BestQ, len(Bestcomps)))
+        print("Graph communities: {}".format(Bestcomps))
         return Bestcomps
     else:
         print("Max modularity (Q):", BestQ)
